@@ -1,16 +1,17 @@
 import { Container } from './styles';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
+import { BorderlessButtonProps } from 'react-native-gesture-handler';
 
-interface Props {
+interface Props extends BorderlessButtonProps {
   color?: string;
 }
 
-export function BackButton({ color }: Props) {
+export function BackButton({ color, ...rest }: Props) {
   const theme = useTheme();
 
   return (
-    <Container>
+    <Container {...rest}>
       <MaterialIcons
         name='chevron-left'
         size={24}
