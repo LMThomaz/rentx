@@ -27,7 +27,7 @@ interface Props {
   data: CarData;
 }
 
-export function Card({ data }: Props) {
+export function Car({ data }: Props) {
   const { brand, name, rent, thumbnail } = data;
 
   return (
