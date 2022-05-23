@@ -1,5 +1,6 @@
-import { BackButton } from '../BackButton';
-import { Container, Header } from './styles';
+import { BackButton } from '../../components/BackButton';
+import { ImageSlider } from '../../components/ImageSlider';
+import { Container, Header, CarImages } from './styles';
 
 export function CarDetails() {
   return (
@@ -7,6 +8,13 @@ export function CarDetails() {
       <Header>
         <BackButton onPress={() => {}} />
       </Header>
+      <CarImages>
+        <ImageSlider
+          imagesUrl={[
+            'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b.png',
+          ]}
+        />
+      </CarImages>
     </Container>
   );
 }
