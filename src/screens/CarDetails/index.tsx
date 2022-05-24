@@ -15,6 +15,7 @@ import {
   Period,
   Price,
   Rent,
+  Footer,
 } from './styles';
 import speedSvg from '../../assets/speed.svg';
 import forceSvg from '../../assets/force.svg';
@@ -22,6 +23,7 @@ import accelerationSvg from '../../assets/acceleration.svg';
 import gasolineSvg from '../../assets/gasoline.svg';
 import exchangeSvg from '../../assets/exchange.svg';
 import peopleSvg from '../../assets/people.svg';
+import { Button } from '../../components/Button';
 
 export function CarDetails() {
   return (
@@ -62,6 +64,9 @@ export function CarDetails() {
           cupiditate autem?
         </About>
       </Content>
+      <Footer>
+        <Button title='Confirmar' />
+      </Footer>
     </Container>
   );
 }
