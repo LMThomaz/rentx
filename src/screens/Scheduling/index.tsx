@@ -1,19 +1,20 @@
+import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
+import ArrowSvg from '../../assets/arrow.svg';
 import { BackButton } from '../../components/BackButton';
+import { Button } from '../../components/Button';
+import { Calendar } from '../../components/Calendar';
 import {
   Container,
-  Header,
-  Title,
-  RentalPeriod,
+  Content,
   DateInfo,
   DateTitle,
   DateValue,
-  Content,
   Footer,
+  Header,
+  RentalPeriod,
+  Title,
 } from './styles';
-import ArrowSvg from '../../assets/arrow.svg';
-import { StatusBar } from 'react-native';
-import { Button } from '../../components/Button';
 
 export function Scheduling() {
   const theme = useTheme();
@@ -44,7 +45,9 @@ export function Scheduling() {
           </DateInfo>
         </RentalPeriod>
       </Header>
-      <Content></Content>
+      <Content>
+        <Calendar />
+      </Content>
       <Footer>
         <Button title='Confirmar' />
       </Footer>
