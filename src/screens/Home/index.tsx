@@ -6,24 +6,32 @@ import Logo from '../../assets/logo.svg';
 import { Car } from '../../components/Car';
 import { StackRoutesName } from '../../routes/stack.routes';
 import { CarList, Container, Header, HeaderContent, TotalCars } from './styles';
+import { api } from '../../services/api';
+import { useEffect, useState } from 'react';
+import { CarTDO } from '../../dtos/CarTDO';
 
 export function Home() {
+  const [cars, setCars] = useState<CarTDO[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigation =
     useNavigation<NativeStackNavigationProp<StackRoutesName>>();
-  const carData = {
-    brand: 'Audi',
-    name: 'RS 5 Coupé',
-    rent: {
-      period: 'Ao dia',
-      price: 120,
-    },
-    thumbnail:
-      'https://png.monster/wp-content/uploads/2020/11/2018-audi-rs5-4wd-coupe-angular-front-5039562b.png',
-  };
-
   function handleCarDetails() {
     navigation.navigate('CarDetails');
   }
+  useEffect(() => {
+    async function fetchCars() {
+      try {
+        const response = await api.get('/cars');
+        console.log(response.data);
+        setCars(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCars();
+  }, []);
 
   return (
     <Container>
@@ -39,10 +47,10 @@ export function Home() {
         </HeaderContent>
       </Header>
       <CarList
-        data={[1, 2, 3, 4, 5, 6, 7]}
-        keyExtractor={(item) => String(item)}
+        data={cars}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <Car data={carData} onPress={handleCarDetails} />
+          <Car data={item} onPress={handleCarDetails} />
         )}
       />
     </Container>
