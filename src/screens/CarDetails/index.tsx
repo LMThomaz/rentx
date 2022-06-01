@@ -24,8 +24,17 @@ import gasolineSvg from '../../assets/gasoline.svg';
 import exchangeSvg from '../../assets/exchange.svg';
 import peopleSvg from '../../assets/people.svg';
 import { Button } from '../../components/Button';
+import { useNavigation } from '@react-navigation/native';
+import { StackRoutesName } from '../../routes/stack.routes';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export function CarDetails() {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<StackRoutesName>>();
+  function handleConfirmRental() {
+    navigation.navigate('Scheduling');
+  }
+
   return (
     <Container>
       <Header>
@@ -65,7 +74,10 @@ export function CarDetails() {
         </About>
       </Content>
       <Footer>
-        <Button title='Confirmar' />
+        <Button
+          title='Escolher período do aluguel'
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import {
   Archivo_400Regular,
   Archivo_500Medium,
@@ -11,9 +12,9 @@ import {
 import AppLoading from 'expo-app-loading';
 import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
-import { SchedulingComplete } from './src/screens/SchedulingComplete';
-import { SchedulingDetails } from './src/screens/SchedulingDetails';
+import { Routes } from './src/routes';
 import theme from './src/styles/theme';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,8 +29,10 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <SchedulingComplete />
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <Routes />
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
