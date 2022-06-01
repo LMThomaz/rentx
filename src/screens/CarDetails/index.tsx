@@ -27,6 +27,7 @@ import { Button } from '../../components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { StackRoutesName } from '../../routes/stack.routes';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { StatusBar } from 'expo-status-bar';
 
 export function CarDetails() {
   const navigation =
@@ -37,6 +38,11 @@ export function CarDetails() {
 
   return (
     <Container>
+      <StatusBar
+        barStyle='dark-content'
+        translucent
+        backgroundColor='transparent'
+      />
       <Header>
         <BackButton onPress={() => {}} />
       </Header>
