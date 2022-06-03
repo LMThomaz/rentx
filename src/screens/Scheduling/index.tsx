@@ -2,7 +2,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { format } from 'date-fns';
 import { useState } from 'react';
-import { Alert, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import ArrowSvg from '../../assets/arrow.svg';
 import { BackButton } from '../../components/BackButton';
@@ -52,13 +52,6 @@ export function Scheduling() {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackRoutesName>>();
   function handleConfirmRental() {
-    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-      Alert.alert(
-        'Multa calma nessa hora',
-        'Selecione um período para a locação',
-      );
-      return;
-    }
     navigation.navigate('SchedulingDetails', {
       car,
       dates: Object.keys(markedDates),
@@ -122,7 +115,11 @@ export function Scheduling() {
         <Calendar markedDates={markedDates} onDayPress={handleChangeDate} />
       </Content>
       <Footer>
-        <Button title='Confirmar' onPress={handleConfirmRental} />
+        <Button
+          title='Confirmar'
+          onPress={handleConfirmRental}
+          enabled={!!rentalPeriod.startFormatted && !!rentalPeriod.endFormatted}
+        />
       </Footer>
     </Container>
   );
