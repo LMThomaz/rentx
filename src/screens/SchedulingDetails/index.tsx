@@ -1,15 +1,20 @@
 import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
+import { Alert, StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useTheme } from 'styled-components';
-import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { ImageSlider } from '../../components/ImageSlider';
 import { CarTDO } from '../../dtos/CarTDO';
 import { StackRoutesName } from '../../routes/stack.routes';
+import { api } from '../../services/api';
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
+import { getPlatformDate } from '../../utils/getPlatformDate';
 import {
   Accessories,
   Brand,
@@ -35,9 +40,6 @@ import {
   RentalPriceQuota,
   RentalPriceTotal,
 } from './styles';
-import { useEffect, useState } from 'react';
-import { format } from 'date-fns';
-import { getPlatformDate } from '../../utils/getPlatformDate';
 
 interface Params {
   car: CarTDO;
@@ -59,8 +61,21 @@ export function SchedulingDetails() {
   const navigation =
     useNavigation<NativeStackNavigationProp<StackRoutesName>>();
   const rentTotal = Number(dates.length * car.rent.price);
-  function handleConfirmRental() {
-    navigation.navigate('SchedulingComplete');
+  async function handleConfirmRental() {
+    const schedulesByCar = await api.get(`/schedules/${car.id}`);
+    const unavailable_dates = [
+      ...schedulesByCar.data.unavailable_dates,
+      ...dates,
+    ];
+    api
+      .put(`/schedules/${car.id}`, {
+        id: car.id,
+        unavailable_dates,
+      })
+      .then((response) => {
+        navigation.navigate('SchedulingComplete');
+      })
+      .catch(() => Alert.alert('Não foi possível realizar o agendamento'));
   }
   function handleBack() {
     navigation.goBack();
@@ -77,6 +92,11 @@ export function SchedulingDetails() {
 
   return (
     <Container>
+      <StatusBar
+        barStyle='dark-content'
+        translucent
+        backgroundColor='transparent'
+      />
       <Header>
         <BackButton onPress={handleBack} />
       </Header>
@@ -91,7 +111,7 @@ export function SchedulingDetails() {
           </Description>
           <Rent>
             <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.period}</Price>
+            <Price>R$ {car.rent.price}</Price>
           </Rent>
         </Details>
         <Accessories>
