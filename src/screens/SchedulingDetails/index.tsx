@@ -62,13 +62,17 @@ export function SchedulingDetails() {
     useNavigation<NativeStackNavigationProp<StackRoutesName>>();
   const rentTotal = Number(dates.length * car.rent.price);
   async function handleConfirmRental() {
-    const schedulesByCar = await api.get(`/schedules/${car.id}`);
+    const schedulesByCar = await api.get(`/schedules_by_cars/${car.id}`);
     const unavailable_dates = [
       ...schedulesByCar.data.unavailable_dates,
       ...dates,
     ];
+    await api.post('/schedules_by_user', {
+      user_id: 1,
+      car,
+    });
     api
-      .put(`/schedules/${car.id}`, {
+      .put(`/schedules_by_cars/${car.id}`, {
         id: car.id,
         unavailable_dates,
       })
