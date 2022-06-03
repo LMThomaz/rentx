@@ -70,6 +70,8 @@ export function SchedulingDetails() {
     await api.post('/schedules_by_user', {
       user_id: 1,
       car,
+      startDate: rentalPeriod.startFormatted,
+      endDate: rentalPeriod.endFormatted,
     });
     api
       .put(`/schedules_by_cars/${car.id}`, {
