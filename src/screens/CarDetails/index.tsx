@@ -24,14 +24,14 @@ import { StackRoutesName } from '../../routes/stack.routes';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StatusBar } from 'react-native';
 import { CarTDO } from '../../dtos/CarTDO';
+import { useNavigate } from '../../hooks/useNavigate';
 
 interface Params {
   car: CarTDO;
 }
 
 export function CarDetails() {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<StackRoutesName>>();
+  const navigation = useNavigate();
   const route = useRoute();
   const { car } = route.params as Params;
   function handleConfirmRental() {
