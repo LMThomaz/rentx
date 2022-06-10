@@ -1,4 +1,3 @@
-import 'react-native-gesture-handler';
 import {
   Archivo_400Regular,
   Archivo_500Medium,
