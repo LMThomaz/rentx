@@ -1,7 +1,8 @@
 import { StatusBar } from 'react-native';
-import { Container, Footer, Header, SubTitle, Title } from './styles';
+import { Container, Footer, Form, Header, SubTitle, Title } from './styles';
 import { Button } from '../../components/Button';
 import { useTheme } from 'styled-components';
+import { Input } from '../../components/Input';
 
 export function SignIn() {
   const theme = useTheme();
@@ -19,6 +20,9 @@ export function SignIn() {
           Faça seu login para começar{'\n'}uma experiência incrível.
         </SubTitle>
       </Header>
+      <Form>
+        <Input iconName='mail' />
+      </Form>
       <Footer>
         <Button
           title='Login'

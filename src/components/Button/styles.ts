@@ -12,6 +12,7 @@ export const Container = styled(RectButton)<ContainerProps>`
   align-items: center;
   justify-content: center;
   background-color: ${({ color }) => color};
+  margin-bottom: 8px;
 `;
 
 interface ButtonTextProps {
