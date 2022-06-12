@@ -6,6 +6,7 @@ import { Scheduling } from '../screens/Scheduling';
 import { SchedulingComplete } from '../screens/SchedulingComplete';
 import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { Splash } from '../screens/Splash';
+import { SignIn } from '../screens/SignIn';
 
 export type StackRoutesName = {
   CarDetails: {};
@@ -15,6 +16,7 @@ export type StackRoutesName = {
   SchedulingComplete: {};
   SchedulingDetails: {};
   Splash: {};
+  SignIn: {};
 };
 
 const { Navigator, Screen } = createNativeStackNavigator<StackRoutesName>();
@@ -22,11 +24,11 @@ const { Navigator, Screen } = createNativeStackNavigator<StackRoutesName>();
 export function StackRoutes() {
   return (
     <Navigator
-      initialRouteName='Splash'
+      initialRouteName='SignIn'
       screenOptions={{
         headerShown: false,
       }}>
-      <Screen name='Splash' component={Splash} />
+      <Screen name='SignIn' component={SignIn} />
       <Screen
         name='Home'
         component={Home}
