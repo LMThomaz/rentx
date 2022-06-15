@@ -12,11 +12,13 @@ import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import { useNavigate } from '../../hooks/useNavigate';
 
 export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const theme = useTheme();
+  const navigation = useNavigate();
   async function handleSignIn() {
     try {
       const schema = Yup.object().shape({
@@ -35,6 +37,9 @@ export function SignIn() {
         'Ocorreu um erro ao fazer login, verifique as credenciais',
       );
     }
+  }
+  function handleNewAccount() {
+    navigation.navigate('FirstStep');
   }
 
   return (
@@ -79,8 +84,8 @@ export function SignIn() {
             <Button
               title='Criar conta gratuita'
               color={theme.colors.background_secondary}
-              onPress={() => {}}
-              enabled={false}
+              onPress={handleNewAccount}
+              enabled={true}
               loading={false}
               light
             />
