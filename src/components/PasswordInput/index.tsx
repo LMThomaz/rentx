@@ -14,7 +14,7 @@ export function PasswordInput(props: Props) {
   const { iconName, value, ...rest } = props;
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(true);
   const theme = useTheme();
   function handlePasswordVisibilityChange() {
     setIsPasswordVisible(!isPasswordVisible);
