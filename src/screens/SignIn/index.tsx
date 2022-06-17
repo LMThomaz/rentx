@@ -12,7 +12,7 @@ import { Input } from '../../components/Input';
 import { PasswordInput } from '../../components/PasswordInput';
 import { useState } from 'react';
 import * as Yup from 'yup';
-import { useNavigate } from '../../hooks/useNavigate';
+import { useNavigate } from '../../hooks/navigate';
 
 export function SignIn() {
   const [email, setEmail] = useState('');

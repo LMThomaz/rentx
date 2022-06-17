@@ -5,7 +5,7 @@ import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
 import { Button } from '../../../components/Button';
 import { Input } from '../../../components/Input';
-import { useNavigate } from '../../../hooks/useNavigate';
+import { useNavigate } from '../../../hooks/navigate';
 import {
   Container,
   Form,

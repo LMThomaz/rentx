@@ -14,7 +14,7 @@ import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { ImageSlider } from '../../components/ImageSlider';
 import { CarTDO } from '../../dtos/CarTDO';
-import { useNavigate } from '../../hooks/useNavigate';
+import { useNavigate } from '../../hooks/navigate';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 import {
   About,

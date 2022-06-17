@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import BrandSvg from '../../assets/brand.svg';
 import LogoSvg from '../../assets/logo.svg';
-import { useNavigate } from '../../hooks/useNavigate';
+import { useNavigate } from '../../hooks/navigate';
 import { Container } from './styles';
 
 export function Splash() {
