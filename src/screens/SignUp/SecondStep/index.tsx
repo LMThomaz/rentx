@@ -45,6 +45,11 @@ export function SecondStep() {
       return Alert.alert('Calma!', 'As senhas não são iguais');
     }
     // TODO: Enviar para API e registrar
+    navigation.navigate('Confirmation', {
+      nextScreenRoute: 'SignIn',
+      title: 'Conta criada!',
+      message: `Agora é só fazer login\ne aproveitar`,
+    });
   }
 
   return (
