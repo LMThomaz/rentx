@@ -9,6 +9,7 @@ import { Button } from '../../../components/Button';
 import { Input } from '../../../components/Input';
 import { PasswordInput } from '../../../components/PasswordInput';
 import { useNavigate } from '../../../hooks/useNavigate';
+import { api } from '../../../services/api';
 import {
   Container,
   Form,
@@ -37,19 +38,31 @@ export function SecondStep() {
   function handleBack() {
     navigation.goBack();
   }
-  function handleRegister() {
+  async function handleRegister() {
     if (!password || !confirmPassword) {
       return Alert.alert('Calma!', 'Informe a senha a sua confirmação');
     }
     if (password !== confirmPassword) {
       return Alert.alert('Calma!', 'As senhas não são iguais');
     }
-    // TODO: Enviar para API e registrar
-    navigation.navigate('Confirmation', {
-      nextScreenRoute: 'SignIn',
-      title: 'Conta criada!',
-      message: `Agora é só fazer login\ne aproveitar`,
-    });
+    await api
+      .post('/users', {
+        name: user.name,
+        email: user.email,
+        driver_license: user.driverLicense,
+        password,
+      })
+      .then(() => {
+        navigation.navigate('Confirmation', {
+          nextScreenRoute: 'SignIn',
+          title: 'Conta criada!',
+          message: `Agora é só fazer login\ne aproveitar`,
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+        Alert.alert('Ops!', 'Não foi possível cadastrar');
+      });
   }
 
   return (
