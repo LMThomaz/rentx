@@ -13,7 +13,7 @@ import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { ImageSlider } from '../../components/ImageSlider';
-import { CarTDO } from '../../dtos/CarTDO';
+import { CarDTO } from '../../dtos/CarTDO';
 import { useNavigate } from '../../hooks/navigate';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 import {
@@ -33,7 +33,7 @@ import {
 } from './styles';
 
 interface Params {
-  car: CarTDO;
+  car: CarDTO;
 }
 
 export function CarDetails() {
@@ -105,8 +105,8 @@ export function CarDetails() {
             <Name>{car.name}</Name>
           </Description>
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
         <Accessories>
